@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using VirusTotalServices;
+using VirusTotalServices.Infra;
+using VirusTotalServices.Interface;
 
 namespace WebAppDesafio
 {
@@ -33,6 +36,12 @@ namespace WebAppDesafio
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddOptions();
+            services.Configure<VirusTotalConfiguration>(Configuration.GetSection("VirusTotal"));
+            services.AddSingleton(Configuration);
+
+            services.AddTransient<IVirusTotalService, VirusTotalService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
