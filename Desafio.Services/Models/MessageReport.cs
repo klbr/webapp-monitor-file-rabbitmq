@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace VirusTotalServices.Models
+namespace Desafio.Services.Models
 {
-    public class ScanOutput
+    public class MessageReport
     {
         public string Resource { get; set; }
-        public string Sha256 { get; set; }
     }
 }

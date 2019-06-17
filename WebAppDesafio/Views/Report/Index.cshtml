@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Desafio.Services.Models.ReportDTO>
+
+    @{
+        ViewData["Title"] = "Report - List";
+    }
+
+    <h1>Report</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Filename)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedAt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.LastUpdatedAt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Total)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Positives)
+                </th>
+                <th>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.Filename)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.CreatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.LastUpdatedAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.Positives)
+                </td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Permalink)) {
+                        <a href="@item.Permalink" target="_blank">Permalink</a>
+                    }
+                    | <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>

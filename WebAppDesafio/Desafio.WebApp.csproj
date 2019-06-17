@@ -17,7 +17,8 @@
 
 
   <ItemGroup>
-    <ProjectReference Include="..\VirusTotalServices\VirusTotalServices.csproj" />
+    <ProjectReference Include="..\Desafio.Services\Desafio.Services.csproj" />
+    <ProjectReference Include="..\VirusTotalServices\Desafio.VirusTotalServices.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Desafio.Domain;
+using Desafio.Domain.DTO;
+using System;
 using System.Collections.Generic;
 using System.Text;
-using VirusTotalServices.Models;
 
 namespace VirusTotalServices.Interface
 {
     public interface IVirusTotalService
     {
-        ScanOutput ScanFile(string fileName, byte[] data);
+        ScannedFileJson ScanFile(string fileName, byte[] data);
+        ReportedFileJson Report(string resource);
     }
 }
