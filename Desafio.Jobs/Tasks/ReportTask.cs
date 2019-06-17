@@ -54,7 +54,7 @@ namespace Desafio.Jobs.Tasks
                                  consumer: consumer);
         }
     
-        private void Process(object model, EventingBasicConsumerArgs args) 
+        private async void Process(object model, BasicDeliverEventArgs args) 
         {
             try
             {
@@ -78,7 +78,6 @@ namespace Desafio.Jobs.Tasks
         private void Reinitialize() 
         {
             consumer.Received -= Process;
-            consumer.Dispose();
             channel.Dispose();
             Initilize();
         }
