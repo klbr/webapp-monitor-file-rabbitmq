@@ -21,6 +21,7 @@ namespace Desafio.Jobs.Tasks
         private ConnectionFactory factory;
         private IConnection connection;
         private IModel channel;
+        private EventingBasicConsumer consumer;
 
         public DateTime LastUpdate { get; private set; } = DateTime.Now;
 
@@ -33,24 +34,6 @@ namespace Desafio.Jobs.Tasks
         public async void StartAsync()
         {
             Initilize();
-
-            while (true)
-            {
-                var delayTime = 15;
-                Console.WriteLine($"{DateTime.Now} - Delay by {delayTime} seconds");
-                await Task.Delay(1000 * delayTime);
-
-                try
-                {
-                    var data = channel.BasicGet("desafio", true);
-                    Received(data);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Exception: {ex.ToString()}");
-                    Initilize();
-                }
-            }
         }
 
         private void Initilize()
@@ -58,18 +41,46 @@ namespace Desafio.Jobs.Tasks
             factory = new ConnectionFactory() { HostName = configuration.HostName };
             connection = factory.CreateConnection();
             channel = connection.CreateModel();
+            channel.QueueDeclare(queue: "desafio",
+                                 durable: false,
+                                 exclusive: false,
+                                 autoDelete: false,
+                                 arguments: null);
+            channel.BasicQos(prefetchSize: 0, prefetchCount: 1, global: false);
+            consumer = new EventingBasicConsumer(channel);
+            consumer.Received += Process;
+            channel.BasicConsume(queue: "desafio",
+                                 autoAck: false,
+                                 consumer: consumer);
         }
-
-        private void Received(BasicGetResult data)
+    
+        private void Process(object model, EventingBasicConsumerArgs args) 
         {
-            if (data != null)
+            try
             {
-                var body = data.Body;
+                var delayTime = 15;
+                Console.WriteLine($"{DateTime.Now} - Delay by {delayTime} seconds");
+                await Task.Delay(1000 * delayTime);
+                var body = args.Body;
                 var message = Encoding.UTF8.GetString(body);
                 ProcessQueue(message);
                 LastUpdate = DateTime.Now;
+                channel.BasicAck(deliveryTag: args.DeliveryTag, multiple: false);
+                Console.WriteLine($"{DateTime.Now} - Finished");
             }
-            Console.WriteLine($"{DateTime.Now} - Finished");
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex.ToString()}");
+                Reinitialize();
+            }
+        }
+        
+        private void Reinitialize() 
+        {
+            consumer.Received -= Process;
+            consumer.Dispose();
+            channel.Dispose();
+            Initilize();
         }
 
         internal void UpdateAllReports()
