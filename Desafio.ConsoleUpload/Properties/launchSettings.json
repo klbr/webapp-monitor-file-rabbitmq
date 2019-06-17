@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Desafio.ConsoleUpload": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Windows\\bfsvc.exe"
+    }
+  }
+}

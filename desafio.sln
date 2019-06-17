@@ -34,6 +34,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6 - Tasks", "6 - Tasks", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.Jobs", "Desafio.Jobs\Desafio.Jobs.csproj", "{BF93D5B5-A42B-44B8-84D4-20A2B2D0B177}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Desafio.ConsoleUpload", "Desafio.ConsoleUpload\Desafio.ConsoleUpload.csproj", "{DEBE2DC5-FF23-475E-9330-A60A5E8BF19D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,10 @@ Global
 		{BF93D5B5-A42B-44B8-84D4-20A2B2D0B177}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF93D5B5-A42B-44B8-84D4-20A2B2D0B177}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF93D5B5-A42B-44B8-84D4-20A2B2D0B177}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEBE2DC5-FF23-475E-9330-A60A5E8BF19D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEBE2DC5-FF23-475E-9330-A60A5E8BF19D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEBE2DC5-FF23-475E-9330-A60A5E8BF19D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEBE2DC5-FF23-475E-9330-A60A5E8BF19D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,6 +86,7 @@ Global
 		{88A92417-FC91-49CC-9826-8CB56C9A07A4} = {5563E93C-E78B-45CE-9AD4-4834BF4AC2F5}
 		{1BBD22FD-DE4A-42BA-88A1-022557662998} = {830C2873-59A1-4BE4-9C5F-8E313D0DD9D8}
 		{BF93D5B5-A42B-44B8-84D4-20A2B2D0B177} = {7EC0D4F1-DE08-4CA0-BB10-20D28DAA8992}
+		{DEBE2DC5-FF23-475E-9330-A60A5E8BF19D} = {0C9BE412-B2A7-4C2C-8376-75E9BC440CB5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7DC10724-9E18-4C5E-A944-42E281AEBC54}
