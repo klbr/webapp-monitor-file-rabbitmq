@@ -42,7 +42,7 @@ namespace Desafio.Tests.Controllers
             var result = (RedirectToActionResult)controller.Index();
             
             //assert
-            Assert.Equal("Home", result.ControllerName);
+            Assert.Equal("Report", result.ControllerName);
         }
 
         [Fact]
@@ -54,7 +54,7 @@ namespace Desafio.Tests.Controllers
 
             //assert
             Assert.Equal(400, result.StatusCode);
-            Assert.Equal("File not found", result.Value);
+            Assert.Equal("File not found or empty", result.Value);
         }
 
         [Fact]
